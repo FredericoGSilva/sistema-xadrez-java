@@ -16,6 +16,7 @@ public class Posicao {
 		this.coluna = coluna;
 	}
 
+	//Imprimir posição na tela.
 	@Override
 	public String toString() {
 		return linha + ", " + coluna;
