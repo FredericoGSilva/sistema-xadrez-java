@@ -27,9 +27,9 @@ public class Partida {
 	}
 	
 	public void configuracaoInicial() {
-		tabuleiro.pecaPosicao(new Torre(tabuleiro, Cor.Branca), new Posicao(2, 1));
-		tabuleiro.pecaPosicao(new Rei(tabuleiro, Cor.Preta), new Posicao(0, 4));
-		tabuleiro.pecaPosicao(new Rei(tabuleiro, Cor.Branca), new Posicao(7, 4));
+		tabuleiro.colocarPecaPosicao(new Torre(tabuleiro, Cor.Branca), new Posicao(2, 1));
+		tabuleiro.colocarPecaPosicao(new Rei(tabuleiro, Cor.Preta), new Posicao(0, 4));
+		tabuleiro.colocarPecaPosicao(new Rei(tabuleiro, Cor.Branca), new Posicao(7, 4));
 	}
 	
 }
