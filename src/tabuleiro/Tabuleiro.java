@@ -25,7 +25,7 @@ public class Tabuleiro {
 	}
 	
 	// sobrecarga -> retornar a peça pela posição.
-	public Peca peca(Posicao posicao) {
+	public Peca peca(PosicaoTabuleiro posicao) {
 		if (!existePosicao(posicao)) {
 			throw new TabuleiroExcecao("Posição não está no quadro.");
 		}
@@ -33,7 +33,7 @@ public class Tabuleiro {
 	}
 	
 	// colocar peça na posição.
-	public void colocarPecaPosicao(Peca peca, Posicao posicao) {
+	public void colocarPecaPosicao(Peca peca, PosicaoTabuleiro posicao) {
 		if (existePeca(posicao)) {
 			throw new TabuleiroExcecao("Já existe uma peça na posição " + posicao);
 		}
@@ -47,11 +47,11 @@ public class Tabuleiro {
 	}
 	
 	// Antes de com uma posição e uma peça -> verificar se elas existem.
-	public boolean existePosicao(Posicao posicao) {
+	public boolean existePosicao(PosicaoTabuleiro posicao) {
 		return existePosicao(posicao.getLinha(), posicao.getColuna());
 	}
 	
-	public boolean existePeca(Posicao posicao) {
+	public boolean existePeca(PosicaoTabuleiro posicao) {
 		if (!existePosicao(posicao)) {
 			new TabuleiroExcecao("Posição não está no quadro.");
 		}

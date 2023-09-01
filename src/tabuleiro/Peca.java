@@ -2,7 +2,7 @@ package tabuleiro;
 
 public class Peca {
 	
-	protected Posicao posicao;
+	protected PosicaoTabuleiro posicao;
 	private Tabuleiro tabuleiro;
 	
 	public Peca(Tabuleiro tabuleiro) {
