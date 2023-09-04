@@ -57,6 +57,20 @@ public class Tabuleiro {
 		}
 		return peca(posicao) != null;
 	}
+	
+	// remover uma peça de acordo cm a posição do tabuleiro.
+	public Peca removerPeca(PosicaoTabuleiro posicao) {
+		if (!existePosicao(posicao)) {
+			throw new TabuleiroExcecao("Posição não está no quadro.");
+		}
+		if (peca(posicao) == null) {
+			return null;
+		}
+		Peca aux = peca(posicao);
+		aux.posicao = null;
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return aux;
+	}
 
 	public int getLinhas() {
 		return linhas;
