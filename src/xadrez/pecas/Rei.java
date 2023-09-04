@@ -15,4 +15,11 @@ public class Rei extends PecaPartida {
 		return "R";
 	}
 
+	// Por padrão as posições da matriz são falsas -> retornando matriz com todas as posições falsas -> rei preso
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] matriz = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		return matriz;
+	}
+
 }

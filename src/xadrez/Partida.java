@@ -40,6 +40,9 @@ public class Partida {
 		if (!tabuleiro.existePeca(posicao)) {
 			throw new XadrezExcecao("Não existe peça na posição de origem.");
 		}
+		if (!tabuleiro.peca(posicao).existeAlgumMovimentoPossivel()) {
+			throw new XadrezExcecao("Não existe movimentos possíveis para a peça escolhida.");
+		}
 	}
 	
 	public Peca movimentarPeca(PosicaoTabuleiro posicaoOrigem, PosicaoTabuleiro posicaoDestino) {
