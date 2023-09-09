@@ -53,7 +53,7 @@ public class Tabuleiro {
 	
 	public boolean existePeca(PosicaoTabuleiro posicao) {
 		if (!existePosicao(posicao)) {
-			new TabuleiroExcecao("Posição não está no quadro.");
+			throw new TabuleiroExcecao("Posição não está no quadro.");
 		}
 		return peca(posicao) != null;
 	}

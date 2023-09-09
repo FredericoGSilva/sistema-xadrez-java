@@ -26,6 +26,12 @@ public class PosicaoTabuleiro {
 		this.coluna = coluna;
 	}
 	
+	// atualizar os valores d uma posição.
+	public void setValores(int linha, int coluna) {
+		this.linha = linha;
+		this.coluna = coluna;
+	}
+	
 	@Override
 	public String toString() {
 		return linha + ", " + coluna;

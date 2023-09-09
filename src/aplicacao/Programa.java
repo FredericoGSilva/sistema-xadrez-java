@@ -21,10 +21,10 @@ public class Programa {
 				UI.limparTelas();
 				UI.printTabuleiro(partida.getPecaPartida());
 				System.out.println();
-				System.out.println("Origem: ");
+				System.out.print("Origem: ");
 				PosicaoXadrez origem = UI.lerPosicaoXadrez(scan);
 				System.out.println();
-				System.out.println("Destino: ");
+				System.out.print("Destino: ");
 				PosicaoXadrez destino = UI.lerPosicaoXadrez(scan);
 				PecaPartida capturaPeca = partida.executarMovimentoXadrez(origem, destino);
 			} catch (XadrezExcecao e) {
