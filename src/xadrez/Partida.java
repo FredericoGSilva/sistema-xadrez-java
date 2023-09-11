@@ -27,6 +27,13 @@ public class Partida {
 		return matriz;
 	}
 	
+	// Ao escolher uma peça -> indicar para quais posições a peça pode mexer
+	public boolean[][] movimentosPossiveis(PosicaoXadrez posicaoOrigem) {
+		PosicaoTabuleiro posicao = posicaoOrigem.posicaoMatriz();
+		validarPosicaoOrigem(posicao);
+		return tabuleiro.peca(posicao).movimentosPossiveis();
+	}
+	
 	public PecaPartida executarMovimentoXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
 		// converter posicaoOrigem e posicaoDestino p/ posição da matriz.
 		PosicaoTabuleiro origemMatriz = posicaoOrigem.posicaoMatriz();

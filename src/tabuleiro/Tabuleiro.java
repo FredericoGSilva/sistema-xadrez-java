@@ -8,7 +8,7 @@ public class Tabuleiro {
 	
 	public Tabuleiro(int linhas, int colunas) {
 		if (linhas < 1 || colunas < 1) {
-			new TabuleiroExcecao
+			throw new TabuleiroExcecao
 			("Erro criando tabuleiro: é necessário que haja 1 linha e 1 coluna.");
 		}
 		this.linhas = linhas;
@@ -83,10 +83,5 @@ public class Tabuleiro {
 	public int getColunas() {
 		return colunas;
 	}
-
-	public void setColunas(int colunas) {
-		this.colunas = colunas;
-	}
-
 	
 }
