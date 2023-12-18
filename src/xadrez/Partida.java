@@ -71,19 +71,19 @@ public class Partida {
 	}
 	
 	public void configuracaoInicial() {
-		colocarNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCA));
 		colocarNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCA));
 		colocarNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCA));
 		colocarNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCA));
 		colocarNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCA));
 		colocarNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCA));
+		colocarNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCA));
 
 		colocarNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETA));
 		colocarNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETA));
 		colocarNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETA));
 		colocarNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETA));
 		colocarNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETA));
-		colocarNovaPeca('d', 8, new Torre(tabuleiro, Cor.PRETA));
+		colocarNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETA));
 		/*
 		tabuleiro.colocarPecaPosicao(new Torre(tabuleiro, Cor.BRANCA), new PosicaoTabuleiro(2, 1));
 		tabuleiro.colocarPecaPosicao(new Rei(tabuleiro, Cor.PRETA), new PosicaoTabuleiro(0, 4));

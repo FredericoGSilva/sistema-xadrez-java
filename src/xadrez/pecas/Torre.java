@@ -21,57 +21,57 @@ public class Torre extends PecaPartida {
 
 		boolean[][] matriz = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 
-		PosicaoTabuleiro posicaoAuxiliar = new PosicaoTabuleiro(0, 0);
+		PosicaoTabuleiro p = new PosicaoTabuleiro(0, 0);
 
 		// acima da peça
-		posicaoAuxiliar.setValores(posicao.getLinha() - 1, posicao.getColuna());
-		while (getTabuleiro().existePosicao(posicaoAuxiliar) && !getTabuleiro().existePeca(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
-			posicaoAuxiliar.setLinha(posicaoAuxiliar.getLinha() - 1);
+		p.setValores(posicao.getLinha() - 1, posicao.getColuna());
+		while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
+			p.setLinha(p.getLinha() - 1);
 		}
 		// existe uma casa e essa casa possui peça adversária ?
-		if (getTabuleiro().existePosicao(posicaoAuxiliar) && existePeçaOponente(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
+		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
 		// esquerda - coluna
-		posicaoAuxiliar.setValores(posicao.getLinha(), posicao.getColuna() - 1);
-		while (getTabuleiro().existePosicao(posicaoAuxiliar) && !getTabuleiro().existePeca(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
-			posicaoAuxiliar.setColuna(posicaoAuxiliar.getColuna() - 1);
+		p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
+		while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
+			p.setColuna(p.getColuna() - 1);
 		}
-		if (getTabuleiro().existePosicao(posicaoAuxiliar) && existePeçaOponente(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
+		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
 		// direita - coluna
-		posicaoAuxiliar.setValores(posicao.getLinha(), posicao.getColuna() + 1);
-		while (getTabuleiro().existePosicao(posicaoAuxiliar) && !getTabuleiro().existePeca(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
-			posicaoAuxiliar.setColuna(posicaoAuxiliar.getColuna() + 1);
+		p.setValores(posicao.getLinha(), posicao.getColuna() + 1);
+		while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
+			p.setColuna(p.getColuna() + 1);
 		}
-		if (getTabuleiro().existePosicao(posicaoAuxiliar) && existePeçaOponente(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
+		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
 		// esquerda - coluna
-		posicaoAuxiliar.setValores(posicao.getLinha(), posicao.getColuna() - 1);
-		while (getTabuleiro().existePosicao(posicaoAuxiliar) && !getTabuleiro().existePeca(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
-			posicaoAuxiliar.setColuna(posicaoAuxiliar.getColuna() - 1);
+		p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
+		while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
+			p.setColuna(p.getColuna() - 1);
 		}
-		if (getTabuleiro().existePosicao(posicaoAuxiliar) && existePeçaOponente(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
+		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
 		// baixo - linha
-		posicaoAuxiliar.setValores(posicao.getLinha() + 1, posicao.getColuna());
-		while (getTabuleiro().existePosicao(posicaoAuxiliar) && !getTabuleiro().existePeca(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
-			posicaoAuxiliar.setLinha(posicaoAuxiliar.getLinha() + 1);
+		p.setValores(posicao.getLinha() + 1, posicao.getColuna());
+		while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
+			p.setLinha(p.getLinha() + 1);
 		}
-		if (getTabuleiro().existePosicao(posicaoAuxiliar) && existePeçaOponente(posicaoAuxiliar)) {
-			matriz[posicaoAuxiliar.getLinha()][posicaoAuxiliar.getColuna()] = true;
+		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
 		return matriz;
