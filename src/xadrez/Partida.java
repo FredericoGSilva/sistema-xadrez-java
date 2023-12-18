@@ -10,11 +10,23 @@ public class Partida {
 
 	// Regras do jogo.
 	
+	private int turno;
+	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	
 	public Partida() {
 		tabuleiro = new Tabuleiro(8, 8);
+		turno = 1;
+		jogadorAtual = Cor.BRANCA;
 		configuracaoInicial();
+	}
+	
+	public int getTurno() {
+		return turno;
+	}
+	
+	public Cor getJogadorAtual() {
+		return jogadorAtual;
 	}
 	
 	public PecaPartida[][] getPecaPartida() {
@@ -41,6 +53,7 @@ public class Partida {
 		validarPosicaoOrigem(origemMatriz);
 		validarPosicaoDestino(origemMatriz, destinoMatriz);
 		Peca capturaPeca = movimentarPeca(origemMatriz, destinoMatriz);
+		proximoTurno();
 		return (PecaPartida) capturaPeca;
 	}
 	
@@ -48,9 +61,18 @@ public class Partida {
 		if (!tabuleiro.existePeca(posicao)) {
 			throw new XadrezExcecao("Não existe peça na posição de origem.");
 		}
+		if (jogadorAtual != ((PecaPartida) tabuleiro.peca(posicao)).getCor()) {
+			throw new XadrezExcecao("A peça escolhida não é sua.");
+		}
+		
 		if (!tabuleiro.peca(posicao).existeAlgumMovimentoPossivel()) {
 			throw new XadrezExcecao("Não existe movimentos possíveis para a peça escolhida.");
 		}
+	}
+	
+	public void proximoTurno() {
+		turno++;
+		jogadorAtual = jogadorAtual == Cor.BRANCA ? Cor.PRETA : Cor.BRANCA;
 	}
 	
 	private void validarPosicaoDestino(PosicaoTabuleiro posicaoOrigem, PosicaoTabuleiro posicaoDestino) {
