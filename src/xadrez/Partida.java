@@ -84,18 +84,20 @@ public class Partida {
 	}
 	
 	public Peca movimentarPeca(PosicaoTabuleiro posicaoOrigem, PosicaoTabuleiro posicaoDestino) {
-		Peca peca = tabuleiro.removerPeca(posicaoOrigem);
+		PecaPartida peca = (PecaPartida) tabuleiro.removerPeca(posicaoOrigem);
+		peca.aumentaContagem();
 		Peca pecaCapturada = tabuleiro.removerPeca(posicaoDestino);
+		tabuleiro.colocarPecaPosicao(peca, posicaoDestino);
 		if (pecaCapturada != null) {
 			pecasNoTabuleiro.remove(pecaCapturada);
 			pecasCapturadas.add(pecaCapturada);
 		}
-		tabuleiro.colocarPecaPosicao(peca, posicaoDestino);
 		return pecaCapturada;
 	}
 	
 	public void desfazerMovimento(PosicaoTabuleiro origem, PosicaoTabuleiro destino, Peca capturada) {
-		Peca peca = tabuleiro.removerPeca(destino);
+		PecaPartida peca = (PecaPartida) tabuleiro.removerPeca(destino);
+		peca.diminuiContagem();
 		tabuleiro.colocarPecaPosicao(peca, origem);
 		if (capturada != null) {
 			tabuleiro.colocarPecaPosicao(capturada, destino);
