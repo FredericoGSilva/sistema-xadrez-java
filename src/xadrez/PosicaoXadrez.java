@@ -16,12 +16,13 @@ public class PosicaoXadrez {
 		this.linha = linha;
 	}
 	
-	public PosicaoTabuleiro posicaoMatriz() {
+	protected PosicaoTabuleiro posicaoMatriz() {
 		return new PosicaoTabuleiro(8 - linha, coluna - 'a');
 	}
 	
-	public PosicaoXadrez posicaoXadrez(PosicaoTabuleiro posicao) {
-		return new PosicaoXadrez((char)('a' - coluna), 8 - linha);
+	protected static PosicaoXadrez posicaoXadrez(PosicaoTabuleiro posicao) {
+		return new PosicaoXadrez
+				((char)('a' + posicao.getColuna()), 8 - posicao.getLinha());
 	}
 	
 	public char getColuna() {

@@ -18,6 +18,10 @@ public abstract class PecaPartida extends Peca {
 		return peca != null && peca.getCor() != cor;
 	}
 	
+	public PosicaoXadrez getPosicaoXadrez() {
+		return PosicaoXadrez.posicaoXadrez(posicao);
+	}
+	
 	public Cor getCor() {
 		return cor;
 	}

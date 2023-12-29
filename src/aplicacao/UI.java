@@ -53,13 +53,16 @@ public class UI {
 		}
 	}
 	
-	public static void imprimirPartida(Partida partida, List<PecaPartida> captudas) {
+	public static void imprimirPartida(Partida partida, List<PecaPartida> capturadas) {
 		printTabuleiro(partida.getPecaPartida());
 		System.out.println();
-		printPecasCapturadas(captudas);
+		printPecasCapturadas(capturadas);
 		System.out.println();
 		System.out.println("Turno: " + partida.getTurno());
 		System.out.println("Jogador esperando: " + partida.getJogadorAtual());
+		if (partida.getXeque()) {
+			System.out.println("Xeque!");
+		}
 	}
 
 	public static void printTabuleiro(PecaPartida[][] pecas) {
