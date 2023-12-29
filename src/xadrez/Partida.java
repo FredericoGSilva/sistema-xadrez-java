@@ -18,6 +18,7 @@ public class Partida {
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	private boolean xeque;
+	private boolean xequeMate;
 	// controle de peças
 	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
 	private List<Peca> pecasCapturadas = new ArrayList<>();
@@ -39,6 +40,10 @@ public class Partida {
 	
 	public boolean getXeque() {
 		return xeque;
+	}
+	
+	public boolean getXequeMate() {
+		return xequeMate;
 	}
 	
 	public PecaPartida[][] getPecaPartida() {
@@ -70,7 +75,11 @@ public class Partida {
 			throw new XadrezExcecao("Você não pode se colocar em xeque.");
 		}
 		xeque = (testXeque(oponente(jogadorAtual))) ? true : false;
-		proximoTurno();
+		if (testXequeMate(oponente(jogadorAtual))) {
+			xequeMate = true;
+		} else {
+			proximoTurno();
+		}
 		return (PecaPartida) capturaPeca;
 	}
 	
@@ -147,12 +156,47 @@ public class Partida {
 		return false;
 	}
 	
+	private boolean testXequeMate(Cor cor) {
+		if (!testXeque(cor)) {
+			return false;
+		}
+		List<Peca> lista = pecasNoTabuleiro.stream().filter(
+				x ->((PecaPartida) x).getCor() == cor).collect(Collectors.toList());
+		for (Peca p : lista) {
+			boolean[][] matriz = p.movimentosPossiveis();
+			for (int i = 0; i < tabuleiro.getLinhas(); i++) {
+				for (int j = 0; j < tabuleiro.getColunas(); j++) {
+					if (matriz[i][j]) {
+						PosicaoTabuleiro origem = ((PecaPartida) p).getPosicaoXadrez().posicaoMatriz();
+						PosicaoTabuleiro destino = new PosicaoTabuleiro(i, j);
+						Peca capturaPeca = movimentarPeca(origem, destino);
+						boolean testeXeque = testXeque(cor);
+						desfazerMovimento(origem, destino, capturaPeca);
+						if (!testeXeque) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
 	private void colocarNovaPeca(char coluna, int linha, PecaPartida peca) {
 		tabuleiro.colocarPecaPosicao(peca, new PosicaoXadrez(coluna, linha).posicaoMatriz());
 		pecasNoTabuleiro.add(peca);
 	}
 	
 	public void configuracaoInicial() {
+		// Peças em posição fácil para testar o xeque mate.
+		colocarNovaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCA));
+		colocarNovaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCA));
+		colocarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCA));
+
+		colocarNovaPeca('b', 8, new Torre(tabuleiro, Cor.PRETA));
+		colocarNovaPeca('a', 8, new Rei(tabuleiro, Cor.PRETA));
+		
+		/*
 		colocarNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCA));
 		colocarNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCA));
 		colocarNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCA));
@@ -166,6 +210,8 @@ public class Partida {
 		colocarNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETA));
 		colocarNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETA));
 		colocarNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETA));
+		*/
+		
 		/*
 		tabuleiro.colocarPecaPosicao(new Torre(tabuleiro, Cor.BRANCA), new PosicaoTabuleiro(2, 1));
 		tabuleiro.colocarPecaPosicao(new Rei(tabuleiro, Cor.PRETA), new PosicaoTabuleiro(0, 4));

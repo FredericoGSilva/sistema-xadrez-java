@@ -19,9 +19,9 @@ public class Programa {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		while (true) {
+		while (!partida.getXequeMate()) {
 			try {
-				UI.limparTelas();
+				UI.limparTela();
 				//UI.printTabuleiro(partida.getPecaPartida());
 				UI.imprimirPartida(partida, capturadas);
 				System.out.println();
@@ -29,7 +29,7 @@ public class Programa {
 				PosicaoXadrez origem = UI.lerPosicaoXadrez(scan);
 				
 				boolean[][] movimentosPossiveis = partida.movimentosPossiveis(origem);
-				UI.limparTelas();
+				UI.limparTela();
 				UI.printTabuleiro(partida.getPecaPartida(), movimentosPossiveis);
 				
 				System.out.println();
@@ -50,6 +50,9 @@ public class Programa {
 			}
 			
 		}
+		
+		UI.limparTela();
+		UI.imprimirPartida(partida, capturadas);
 
 	}
 }

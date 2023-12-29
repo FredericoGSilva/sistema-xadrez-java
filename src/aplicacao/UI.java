@@ -36,7 +36,7 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
-	public static void limparTelas() {
+	public static void limparTela() {
 		System.out.println("\033[H\033[2J");
 		System.out.flush();
 	}
@@ -59,9 +59,15 @@ public class UI {
 		printPecasCapturadas(capturadas);
 		System.out.println();
 		System.out.println("Turno: " + partida.getTurno());
-		System.out.println("Jogador esperando: " + partida.getJogadorAtual());
-		if (partida.getXeque()) {
-			System.out.println("Xeque!");
+		
+		if (!partida.getXequeMate()) {
+			System.out.println("Jogador esperando: " + partida.getJogadorAtual());
+			if (partida.getXeque()) {
+				System.out.println("Xeque!");
+			}
+		} else {
+			System.out.println("Xeque-Mate!");
+			System.out.println("Vencedor " + partida.getJogadorAtual());
 		}
 	}
 
