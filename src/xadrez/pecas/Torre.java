@@ -30,7 +30,7 @@ public class Torre extends PecaPartida {
 			p.setLinha(p.getLinha() - 1);
 		}
 		// existe uma casa e essa casa possui peça adversária ?
-		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+		if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
@@ -40,7 +40,7 @@ public class Torre extends PecaPartida {
 			matriz[p.getLinha()][p.getColuna()] = true;
 			p.setColuna(p.getColuna() - 1);
 		}
-		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+		if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
@@ -50,17 +50,7 @@ public class Torre extends PecaPartida {
 			matriz[p.getLinha()][p.getColuna()] = true;
 			p.setColuna(p.getColuna() + 1);
 		}
-		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
-			matriz[p.getLinha()][p.getColuna()] = true;
-		}
-
-		// esquerda - coluna
-		p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
-		while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
-			matriz[p.getLinha()][p.getColuna()] = true;
-			p.setColuna(p.getColuna() - 1);
-		}
-		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+		if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 
@@ -70,7 +60,7 @@ public class Torre extends PecaPartida {
 			matriz[p.getLinha()][p.getColuna()] = true;
 			p.setLinha(p.getLinha() + 1);
 		}
-		if (getTabuleiro().existePosicao(p) && existePeçaOponente(p)) {
+		if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 

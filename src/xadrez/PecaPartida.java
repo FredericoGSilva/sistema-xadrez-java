@@ -14,7 +14,7 @@ public abstract class PecaPartida extends Peca {
 		this.cor = cor;
 	}
 	
-	protected boolean existePeçaOponente(PosicaoTabuleiro posicao) {
+	protected boolean existePecaOponente(PosicaoTabuleiro posicao) {
 		PecaPartida peca = (PecaPartida) getTabuleiro().peca(posicao);
 		return peca != null && peca.getCor() != cor;
 	}
