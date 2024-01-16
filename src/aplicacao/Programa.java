@@ -41,6 +41,13 @@ public class Programa {
 					capturadas.add(capturaPeca);
 				}
 				
+				// peão foi promovido
+				if (partida.getPecaPromovida() != null) {
+					System.out.println("Insira peça para promoção (C/B/T/RA): ");
+					String tipo = scan.nextLine();
+					partida.substituirPecaPromovida(tipo);
+				}
+				
 			} catch (XadrezExcecao e) {
 				System.out.println(e.getMessage());
 				scan.nextLine();
