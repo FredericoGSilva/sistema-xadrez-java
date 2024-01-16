@@ -3,12 +3,16 @@ package xadrez.pecas;
 import tabuleiro.PosicaoTabuleiro;
 import tabuleiro.Tabuleiro;
 import xadrez.Cor;
+import xadrez.Partida;
 import xadrez.PecaPartida;
 
 public class Peao extends PecaPartida {
 
-	public Peao(Tabuleiro tabuleiro, Cor cor) {
+	private Partida partida;
+	
+	public Peao(Tabuleiro tabuleiro, Cor cor, Partida partida) {
 		super(tabuleiro, cor);
+		this.partida = partida;
 	}
 	
 	@Override
@@ -49,6 +53,24 @@ public class Peao extends PecaPartida {
 			if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
 				matriz[p.getLinha()][p.getColuna()] = true;
 			}
+			
+			// movimento especial: EnPassant -> brancas
+			
+			// peça adversária do lado direito. 
+			if (posicao.getLinha() == 3) {
+				PosicaoTabuleiro esquerda = new PosicaoTabuleiro(posicao.getLinha(), posicao.getColuna() - 1);
+				if (getTabuleiro().existePosicao(esquerda) && existePecaOponente(esquerda) 
+						&& getTabuleiro().peca(esquerda) == partida.getEnPassant()) {
+					matriz[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
+				}
+				
+				// peça adversária do lado esquerdo.
+				PosicaoTabuleiro direita = new PosicaoTabuleiro(posicao.getLinha(), posicao.getColuna() + 1);
+				if (getTabuleiro().existePosicao(direita) && existePecaOponente(direita) 
+						&& getTabuleiro().peca(direita) == partida.getEnPassant()) {
+					matriz[direita.getLinha() - 1][direita.getColuna()] = true;
+				}
+			}
 		}
 		
 		else {
@@ -75,9 +97,29 @@ public class Peao extends PecaPartida {
 			if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
 				matriz[p.getLinha()][p.getColuna()] = true;
 			}
+			
+			// movimento especial: EnPassant -> pretas
+			
+			// peça adversária do lado esquerdo.
+			if (posicao.getLinha() == 4) {
+				PosicaoTabuleiro esquerda = new PosicaoTabuleiro(posicao.getLinha(), posicao.getColuna() - 1);
+				if (getTabuleiro().existePosicao(esquerda) && existePecaOponente(esquerda) && 
+						getTabuleiro().peca(esquerda) == partida.getEnPassant()) {
+					matriz[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
+				}
+				
+				// peça adversária do lado direito
+				PosicaoTabuleiro direita = new PosicaoTabuleiro(posicao.getLinha(), posicao.getColuna() + 1);
+				if (getTabuleiro().existePeca(direita) && existePecaOponente(direita) && 
+						getTabuleiro().peca(direita) == partida.getEnPassant()) {
+					matriz[direita.getLinha() + 1][direita.getColuna()] = true;
+				}
+			}
+			
 		}
 		
 		return matriz;
+		
 	}
 
 	
