@@ -110,7 +110,7 @@ public class Peao extends PecaPartida {
 				
 				// peça adversária do lado direito
 				PosicaoTabuleiro direita = new PosicaoTabuleiro(posicao.getLinha(), posicao.getColuna() + 1);
-				if (getTabuleiro().existePeca(direita) && existePecaOponente(direita) && 
+				if (getTabuleiro().existePosicao(direita) && existePecaOponente(direita) && 
 						getTabuleiro().peca(direita) == partida.getEnPassant()) {
 					matriz[direita.getLinha() + 1][direita.getColuna()] = true;
 				}
